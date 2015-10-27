@@ -1,0 +1,25 @@
+name,note,supplier,unit,price,category
+Euro Fries,Fries,PFD,BOX,10,Frozen
+Vanilia Ice Cream,Ice Cream (Vanila),PFD,LITRES,12,Dairy
+Blue Swimmer- Green,Blue Swimmer,POULOS,Unit/Only,13,Seafood
+King Crab Clusters,King Crab,POULOS,BOX,14,Seafood
+Mud Crab,Mud Crab,POULOS,KG,20,Seafood
+Bannana Prawns- Green- Frozen,Prawns,POULOS,KG,11,Seafood
+Barramundi Fillets- Frozen,Barra Fillets,PFD,BOX,20,Seafood
+Chicken Whole-Size 10,Chicken Whole,DENOVO,Unit/Only,15,Meat
+Beef Pattie- Angel,Beef Pattie,PFD,BOX,25,Frozen
+Chicken Breast,Chicken Breast,DENOVO,KG,23,Meat
+Chicken Wings- Full,Chicken Wings,DENOVO,KG,51,Meat
+Bacon- Rashers,Bacon,DENOVO,KG,23,Meat
+Squid Tubes- Cleaned,Squid,POULOS,BOX,25,Seafood
+Cooked Crab Meat,Crab Meat,POULOS,KG,13,Seafood
+Cod Fillets- Frozen,Cod,PFD,BOX,16,Frozen
+Black Mussels- Green,Mussels,POULOS,KG,24,Seafood
+Damper Roll,Chowder Bun,A1 Bread,Unit/Only,21,Bakery
+Brioche Bun- Sliders,Slider Rolls,A1 Bread,Unit/Only,22,Bakery
+Brioche Bun- Burger 80g,Burger Bun,A1 Bread,Unit/Only,24,Bakery
+Light Bread Roll- Viet Style,Bread Roll- Crab Roll,A1 Bread,Unit/Only,12,Bakery
+Marinara Mix,Marinara Mix,POULOS,KG,13,Seafood
+Scotch Fillet- 250g,Scotch Fillet ,DENOVO,Unit/Only,24,Meat
+Beef Bones,Beef Bones,DENOVO,KG,23,Meat
+Beef Bones,Beef Bones,SANDY,KG,22,Meat

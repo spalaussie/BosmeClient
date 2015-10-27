@@ -1,0 +1,36 @@
+<div class="panel panel-default" ng-repeat="order in orders | orderBy:'-id'| limitTo:10">
+    <div class="panel-heading">
+      <div class="pull-right">
+        <a href="" class="btn btn-danger btn-xs" ng-click="deleteorder({ id: order.id })"
+           title="{{ 'Delete product' | translate }}"><i class="fa fa-trash-o"></i></a>
+      </div>
+        <a href="" ui-sref="app.orders.view({ orderId: order.id })"
+           title="{{ 'view order' |translate}}"><h3 class="panel-title">
+          Order created on {{order.orderdate | date:'MMM/dd/yyyy' }} for {{order.supplier.bussinessname}}</h3></a>
+    </div>
+  <!--< <table class="table table-bordered" ng-show="order.supplier">
+       <tbody>
+       <tr>
+           <th>
+               <a href="" ui-sref="^.view({productId: item.id})">{{order.supplier.name}}</a>
+               <small>{{order.supplier.description}}</small>
+               <div class="pull-right">
+                   <span class="label label-default">{{order.supplier.email}}</span>
+                   <a href="" class="btn btn-xs btn-default" ui-sref="^.edit({productId: item.id})">
+                       <i class="fa fa-pencil"></i>
+                   </a>
+                   <a href="" class="btn btn-xs btn-default" ng-click="delete({productId: item.id})">
+                       <i class="fa fa-trash-o"></i>
+                   </a>
+               </div>
+           </th>
+       </tr>
+       </tbody>
+   </table>
+   <!--<div class="pandy" ng-show="!order.products.length">
+       <h4 class="list-group-item-heading" translate>
+         There are no products with this order!
+       </h4>
+       <p class="list-group-item-text" translate>Click <a href="" ui-sref="^.add({ orderId: order.id })">here</a> to add a product!</p>
+   </div>-->
+</div>

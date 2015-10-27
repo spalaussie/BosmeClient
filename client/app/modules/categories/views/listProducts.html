@@ -1,0 +1,42 @@
+<a href="" ui-sref="^.list" class="btn btn-default"><i class="fa fa-arrow-left"></i> &nbsp;back to Categories</a>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="pull-right">
+      <a href="#" class="btn btn-success btn-xs " ui-sref="app.products.addCategoryProduct({ categoryId: category.id })" title="{{ 'Add product' | translate }}">
+      <i class="fa fa-plus"></i> Product</a>
+    </div>
+    <h3 class="panel-title">{{ category.name }} </h3>
+
+  </div>
+  <div class="panel-body">
+    <table class="table table-bordered " ng-show="category.products.length">
+      <tbody>
+      <tr ng-repeat="item in category.products">
+        <th>
+          <a href="" ui-sref="^.view({productId: item.id})">{{item.name}}</a>
+          <small>{{item.description}}</small>
+          <div class="pull-right">
+            <span class="label label-default">{{item.price}}</span>
+            <a href="#"
+               ui-sref="app.products.editCategoryProduct({categoryId: category.id, productId:item.id})" class="btn btn-xs btn-success">
+              <i class="fa fa-pencil"></i>
+            </a>
+            <a href="" class="btn btn-xs btn-danger" ng-click="deleteproduct({id: item.id})">
+              <i class="fa fa-trash-o"></i>
+            </a>
+
+          </div>
+        </th>
+      </tr>
+      </tbody>
+    </table>
+
+    <h4 class="list-group-item-heading" ng-show="!category.products.length" translate>
+      There are no products in this Category!
+    </h4>
+    <p class="list-group-item-text" translate>Click <a href="" ui-sref="app.products.addCategoryProduct({ categoryId: category.id })">here</a> to add a product!</p>
+
+  </div>
+
+</div>
+

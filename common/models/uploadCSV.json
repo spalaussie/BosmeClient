@@ -1,0 +1,6 @@
+{
+  "name": "UploadCSV",
+  "base": "Model",
+  "idInjection": false
+
+}

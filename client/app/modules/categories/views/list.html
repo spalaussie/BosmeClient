@@ -1,0 +1,21 @@
+<div class="panel panel-default" ng-repeat="category in categories">
+    <div class="panel-heading">
+        <div class="pull-right">
+           <a href="" class="btn btn-success btn-xs" ui-sref="^.editcategory({ categoryId: category.id })"
+               title="{{ 'Edit category' | translate }}"><i class="fa fa-pencil"></i></a>
+           <a href="" class="btn btn-danger btn-xs" ng-click="deletecategory({ id: category.id })"
+               title="{{ 'Delete category' | translate }}"><i class="fa fa-trash-o"></i></a>
+        </div>
+
+        <h3 class="panel-title">{{ category.name }}
+          <a href="" class="btn btn-success btn-xs" style="color: #ffffff" ui-sref="^.products({ categoryId: category.id })" title="{{ 'Show Products' | translate }}">{{category.products.length}} </a>
+        </h3>
+
+
+    </div>
+  <div class="panel-body">
+    <P>{{ category.description }}</P>
+
+  </div>
+</div>
+

@@ -1,0 +1,34 @@
+<a href="" ui-sref="^.list" class="btn btn-default"><i class="fa fa-arrow-left"></i> &nbsp;back to orders</a>
+<div class="panel panel-default">
+  <div class="panel-heading">
+
+    <a href=""
+       title="{{ 'Order' |translate}}"><h3 class="panel-title">
+      {{order.orderLine.length >0 ? "Order" : "Empty Order"}} for {{supplier.bussinessname}} created on {{order.orderDate | date:'MMM/dd/yyyy' }}  </h3></a>
+  </div>
+  <table class="table table-bordered" ng-show="order.orderLine.length">
+    <tr ng-repeat="item in order.orderLine">
+      <th>
+        {{item.productName}}
+
+        <div class="pull-right">
+         {{item.quantity}}  &nbsp; {{item.unit}}
+        </div>
+      </th>
+    </tr>
+    <tr>
+      <td>
+
+        <div class="controls">
+          <!--<button class="btn btn-primary btn-success" ng-click="onSubmit()" translate>Submit</button>
+          <a class="btn btn-primary btn-success" ng-click="open('lg')" translate>Create from this order</a>-->
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class="panel-body" ng-show="!order.orderLine.length">
+    <h4 class="list-group-item-heading" translate>
+      This order is not complete. There are no products in this order!
+    </h4>
+  </div>
+</div>

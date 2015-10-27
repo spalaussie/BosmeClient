@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "sources": [
+      "../common/models",
+      "./models",
+      "../node_modules/loopback-component-passport/lib/models"
+    ]
+  },
+  "User": {
+    "dataSource": "kpDs",
+    "public": false
+  },
+  "accessToken": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "userCredential": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "userIdentity": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "ACL": {
+    "dataSource": "kpDs",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "Role": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "AppModel": {
+    "dataSource": "kpDs",
+    "public": false
+  },
+  "Category": {
+    "dataSource": "kpDs",
+    "public": true,
+    "$promise": {},
+    "$resolved": true
+  },
+  "Order": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "Product": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "ProductOrder": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "Supplier": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "Setting": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "UploadCSV": {
+  "dataSource": "kpDs",
+  "public": true
+},
+  "AuthProvider": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "user": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "Message": {
+    "dataSource": "kpDs",
+    "public": true
+  },
+  "ClientSupplier": {
+    "dataSource": "kpDs",
+    "public": true
+  }
+}

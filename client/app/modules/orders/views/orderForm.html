@@ -1,0 +1,77 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+
+        <a href=""
+           title="{{ 'New Order' |translate}}"><h3 class="panel-title">
+          New Order for {{supplier.bussinessname}} </h3></a>
+    </div>
+
+   <table class="table table-bordered" ng-show="products.length">
+       <tr ng-repeat="item in orderLine">
+           <th ng-class="{'rowSelected': item.quantity>0}">
+               {{item.productName}} &nbsp;&nbsp; <span style="color:#00aaaa ">({{item.unit}})</span>
+
+               <div class="pull-right">
+
+                   <a href="" class="btn btn-xs btn-default" ng-click="decrQty(item)">
+                     <i class="fa fa-minus-square"></i>
+                   </a>
+
+                 <input type="text" ng-model="item.quantity" ng-disabled="true" maxlength="3" size="2" value="1" style="text-align: center" />
+
+                   <a href="" class="btn btn-xs btn-default"  ng-click="incrQty(item)">
+                       <i class="fa fa-plus-square"></i>
+                   </a>
+               </div>
+           </th>
+       </tr>
+       <tr>
+         <td>
+
+           <div class="controls">
+            <!--<button class="btn btn-primary btn-success" ng-click="onSubmit()" translate>Submit</button>-->
+             <a class="btn btn-primary btn-success" ng-click="open('lg')" translate>Submit Order</a>
+           </div>
+         </td>
+       </tr>
+   </table>
+    <div class="panel-body" ng-show="!products.length">
+       <h4 class="list-group-item-heading" translate>
+         There are no products with this supplier!
+       </h4>
+   </div>
+</div>
+
+<script type="text/ng-template" id="myModalContent.html">
+  <div class="modal-header">
+    <div>
+      <h3 class="modal-title">Your Order to {{order.supplier.name}}</h3>
+
+  </div>
+
+  <div class="modal-body">
+    <div class="pull-right">Delivery date:
+      <div class="col-md-6">
+        <p class="input-group">
+          <mydatepicker ng-model="formData.date" date-options="dateOptions"  opened="opened"/>
+        </p>
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <tr ng-repeat="item in order.orderItems">
+        <th>
+          {{item.productName}} &nbsp;&nbsp; <span style="color:#00aaaa ">({{item.unit}})</span>
+
+          <div class="pull-right">
+            {{item.quantity}}
+          </div>
+        </th>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+  </div>
+    </div>
+</script>

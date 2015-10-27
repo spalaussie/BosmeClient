@@ -1,0 +1,17 @@
+<div class="panel panel-default" ng-repeat="supplier in suppliers">
+    <div class="panel-heading">
+        <div class="pull-right">
+          <a href="" class="btn btn-success btn-xs" ng-click="addSupplier(supplier.id)"
+             title="{{ 'Add this Supplier' | translate }}"><i class="fa fa-plus"></i>Add this supplier</a>
+        </div>
+
+          <h3 class="panel-title">{{ supplier.bussinessname }}
+            <a href="" class="btn btn-success btn-xs" style="color: #ffffff" ui-sref="^.products({ supplierId: supplier.id })" title="{{ 'Show Products' | translate }}">  {{supplier.products.length}}  </a>
+          </h3>
+
+    </div>
+  <div class="panel-body">
+    <P>{{ supplier.description }}</P>
+
+  </div>
+</div>

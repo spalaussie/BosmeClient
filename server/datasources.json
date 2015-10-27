@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "mysql"
+  },
+  "kpDs": {
+    "host": "localhost",
+    "port": 3306,
+    "database": "bosme",
+    "username": "root",
+    "password": "",
+    "name": "kpDs",
+    "connector": "mysql",
+    "user": "root"
+  }
+}
