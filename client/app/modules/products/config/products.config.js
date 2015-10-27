@@ -5,7 +5,7 @@ angular.module('com.module.products')
       'app.products.list', 'ion-pizza');
 
       Product.find({
-        filter:{where: { userId: localStorage.getItem('currUserId')}}
+        filter:{where: { userId: localStorage.getItem('$LoopBack$currentUserId')}}
       },function(data) {
         $rootScope.addDashboardBox(gettextCatalog.getString('Products'),
           'bg-purple', 'ion-pizza', data.length,

@@ -8,7 +8,7 @@ angular.module('com.module.suppliers')
     $scope.supplier={};
 
     loadItems();
-    getuserName(localStorage.getItem('currUserId'));
+    getuserName(localStorage.getItem('$LoopBack$currentUserId'));
 
 
 
@@ -37,19 +37,20 @@ angular.module('com.module.suppliers')
 
     function getuserName(userId){
       User.findById({
-        id: userId,
-      fields: {'bussinessname':true}
-      }).$promise.then(function (data) {
-          $scope.sender= data.bussinessname;
+        id: userId
+      },function (data) {
+          $scope.sender=data;
+          open($scope.sender);
         });
     }
+
 
     $scope.addSupplier=function(supplierId){
       var today=new Date();
         var message=new Message({
           userId:supplierId,
-          senderId:localStorage.getItem('currUserId'),
-          title: $scope.sender + " would like to buy goods from you",
+          senderId:localStorage.getItem('$LoopBack$currentUserId'),
+          title: $scope.sender.bussinessname + " would like to buy goods from you",
           message:"I would like to buy goods from you. Please add me to your customer list.",
           createdAt:today
         });
@@ -71,7 +72,7 @@ angular.module('com.module.suppliers')
    /* function loadItems() {
       Supplier.find({
         filter: {
-          where: {userId: localStorage.getItem('currUserId')},
+          where: {userId: localStorage.getItem('$LoopBack$currentUserId')},
           include: {relation: 'products'}
         }
       }, function (suppliers) {
@@ -159,7 +160,7 @@ angular.module('com.module.suppliers')
       Supplier.find({
         filter:{
           where: {
-            userId:localStorage.getItem('currUserId')
+            userId:localStorage.getItem('$LoopBack$currentUserId')
           }
         }
       },function (suppliers) {
@@ -215,7 +216,7 @@ angular.module('com.module.suppliers')
 
 
     $scope.onSubmit = function() {
-      $scope.supplier.userId=localStorage.getItem('currUserId');
+      $scope.supplier.userId=localStorage.getItem('$LoopBack$currentUserId');
 
       Supplier.upsert($scope.supplier, function() {
         CoreService.toastSuccess(gettextCatalog.getString(

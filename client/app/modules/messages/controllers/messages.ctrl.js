@@ -39,7 +39,7 @@ angular.module('com.module.messages')
         $scope.user = User.findById({
           id: sender.id
         });
-        $scope.user.supplierId = localStorage.getItem('currUserId');
+        $scope.user.supplierId = localStorage.getItem('$LoopBack$currentUserId');
         $scope.user.$save();
 
 
@@ -58,8 +58,8 @@ angular.module('com.module.messages')
       Message.find({
         filter: {
           where: {
-            and: [{userId: localStorage.getItem('currUserId')}, {read: 0}]
-          },order: 'id DESC'
+            userId: localStorage.getItem('$LoopBack$currentUserId')
+          },order: 'read ASC, id DESC ',groupBy:'read'
         }
       }, function (messages) {
         $scope.messages = messages;
@@ -105,11 +105,52 @@ angular.module('com.module.messages')
         });
     }
 
+    /*****************************************************************************/
+    /************Create a modal dialogue read Messages **************************/
+    /***************************************************************************/
+
+    $scope.openMessage=function(thisMessage) {
+
+
+      var modalInstance = $modal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'messageModalContent.html',
+        controller: 'MessageModalInstanceCtrl',
+        backdrop: 'static',
+        resolve: {
+          message: function () {
+            return thisMessage;
+          }
+        }
+      });
+
+      /***********************************************************************************/
+      /*************Open a modal to accept or reject the clients (sender)request**********/
+      /***********************************************************************************/
+
+      modalInstance.result.then(function (message) {
+        if(!message.read) {
+          Message.findById({
+            id: message.id
+          }, function (currMsg) {
+            currMsg.read = true;
+            Message.upsert(currMsg, function () {
+              loadItems();
+            });
+          })
+        }
+      });
+
+    };
+
+
+
+
     function updateDashBoard(){
       Message.find(
         {
           filter: {
-            where: {userId: localStorage.getItem('currUserId')}
+            where: {userId: localStorage.getItem('$LoopBack$currentUserId')}
           }
         }, function (messages) {
           angular.forEach($rootScope.dashboardBox, function(box){

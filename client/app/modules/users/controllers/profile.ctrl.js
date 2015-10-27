@@ -97,7 +97,7 @@ angular.module('com.module.users')
 
     $scope.onSubmit = function() {
       User.upsert($scope.user, function() {
-        localStorage.setItem('currUser',JSON.stringify($scope.user));
+        //localStorage.setItem('currUser',JSON.stringify($scope.user));
         CoreService.toastSuccess(gettextCatalog.getString(
           'Profile saved'), gettextCatalog.getString(
           'Enjoy the new you!'));

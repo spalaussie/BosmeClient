@@ -92,7 +92,7 @@ function ProductsFormCtrl($rootScope, $scope, $stateParams, $state, CoreService,
     Product.find({
       filter:{
         where: {
-          userId:localStorage.getItem('currUserId')
+          userId:localStorage.getItem('$LoopBack$currentUserId')
         }
       }
     },function (products) {
@@ -116,7 +116,7 @@ function ProductsFormCtrl($rootScope, $scope, $stateParams, $state, CoreService,
   }
 
   this.onSubmit = function() {
-    self.product.userId=localStorage.getItem('currUserId');
+    self.product.userId=localStorage.getItem('$LoopBack$currentUserId');
     Product.upsert(self.product, function() {
       CoreService.toastSuccess(gettextCatalog.getString(
         'Product saved'), gettextCatalog.getString(

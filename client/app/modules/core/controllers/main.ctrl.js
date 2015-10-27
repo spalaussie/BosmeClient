@@ -23,28 +23,30 @@ angular.module('com.module.core')
         switch (box.name) {
           case "Categories":
             Category.find({
-              filter: {where: {userId: localStorage.getItem('currUserId')}}
+              filter: {where: {userId: localStorage.getItem('$LoopBack$currentUserId')}}
             }, function (categories) {
               box.quantity = categories.length;
             });
             break;
           case "Suppliers":
-            Supplier.find({
-              filter: {where: {userId: localStorage.getItem('currUserId')}}
-            }, function (suppliers) {
+            User.find({
+              filter: {
+                where: {isSupplier: true}
+              }
+            },function(suppliers) {
               box.quantity = suppliers.length;
             });
             break;
           case "Products":
             Product.find({
-              filter: {where: {userId: localStorage.getItem('currUserId')}}
+              filter: {where: {userId: localStorage.getItem('$LoopBack$currentUserId')}}
             }, function (products) {
               box.quantity = products.length;
             });
             break;
           case "Orders":
             Order.find({
-              filter: {where: {userId: localStorage.getItem('currUserId')}}
+              filter: {where: {userId: localStorage.getItem('$LoopBack$currentUserId')}}
             }, function (orders) {
               box.quantity = orders.length;
             });
@@ -53,7 +55,7 @@ angular.module('com.module.core')
             Message.find({
               filter: {
                 where: {
-                  and: [{userId: localStorage.getItem('currUserId')}, {read: 0}]
+                  and: [{userId: localStorage.getItem('$LoopBack$currentUserId')}, {read: 0}]
                 }
               }
             }, function (messages) {

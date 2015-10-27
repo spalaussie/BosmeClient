@@ -4,8 +4,10 @@ angular.module('com.module.suppliers')
     $rootScope.addMenu(gettextCatalog.getString('Suppliers'),
       'app.suppliers.list', 'ion-ios-people');
 
-      Supplier.find({
-        filter:{where: { userId: localStorage.getItem('currUserId')}}
+      User.find({
+        filter: {
+          where: {isSupplier: true}
+        }
       },function(data) {
         $rootScope.addDashboardBox(gettextCatalog.getString('Suppliers'),
           'bg-blue', 'ion-ios-people', data.length,

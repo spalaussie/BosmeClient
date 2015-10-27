@@ -20,12 +20,12 @@ angular.module('com.module.products')
         resolve: {
           categories: function (Category, AppAuth) {
             return Category.find({
-              filter:{where: { userId: localStorage.getItem('currUserId')}}
+              filter:{where: { userId: localStorage.getItem('$LoopBack$currentUserId')}}
             }).$promise;
           },
           suppliers: function (Supplier) {
             return Supplier.find({
-              filter:{where: { userId:  localStorage.getItem('currUserId')}}
+              filter:{where: { userId:  localStorage.getItem('$LoopBack$currentUserId')}}
             }).$promise;
           },
           url: function () {
@@ -49,12 +49,12 @@ angular.module('com.module.products')
         resolve: {
           categories: function (Category) {
             return Category.find({
-              filter:{where: { userId:  localStorage.getItem('currUserId')}}
+              filter:{where: { userId:  localStorage.getItem('$LoopBack$currentUserId')}}
             }).$promise;
           },
           suppliers: function (Supplier) {
             return Supplier.find({
-              filter:{where: { userId:  localStorage.getItem('currUserId')}}
+              filter:{where: { userId:  localStorage.getItem('$LoopBack$currentUserId')}}
             }).$promise;
           },
           url: function () {
@@ -81,7 +81,7 @@ angular.module('com.module.products')
           },
           suppliers: function (Supplier) {
             return Supplier.find({
-              filter: {where: {userId: localStorage.getItem('currUserId')}}
+              filter: {where: {userId: localStorage.getItem('$LoopBack$currentUserId')}}
             }).$promise;
           },
           url: function () {
@@ -109,7 +109,7 @@ angular.module('com.module.products')
           },
           suppliers: function (Supplier) {
             return Supplier.find({
-              filter: {where: {userId: localStorage.getItem('currUserId')}}
+              filter: {where: {userId: localStorage.getItem('$LoopBack$currentUserId')}}
             }).$promise;
           },
           url: function () {
@@ -136,7 +136,7 @@ angular.module('com.module.products')
           },
           categories: function (Category) {
             return Category.find({
-              filter:{where: { userId:  localStorage.getItem('currUserId')}}
+              filter:{where: { userId:  localStorage.getItem('$LoopBack$currentUserId')}}
             }).$promise;
           },
           url: function () {
@@ -165,7 +165,7 @@ angular.module('com.module.products')
           },
           categories: function (Category) {
             return Category.find({
-              filter: {where: {userId: localStorage.getItem('currUserId')}}
+              filter: {where: {userId: localStorage.getItem('$LoopBack$currentUserId')}}
             }).$promise;
           },
           url: function () {

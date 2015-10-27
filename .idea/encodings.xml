@@ -15,10 +15,13 @@
     <file url="file://$PROJECT_DIR$/client/app/modules/core/views/elements/navbar.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/app/modules/core/views/home.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/app/modules/messages/config/messages.config.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/app/modules/messages/controllers/messages.ctrl.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/app/modules/messages/controllers/modalMessageInstanceCtrl.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/app/modules/messages/views/main.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/app/modules/orders/config/orders.config.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/app/modules/orders/config/orders.routes.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/app/modules/orders/controllers/modalInstanceCtrl.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/app/modules/orders/controllers/modalOrderInstanceCtrl.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/app/modules/orders/controllers/orders.ctrl.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/app/modules/orders/controllers/orders.form.ctrl.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/app/modules/orders/controllers/orders.product.ctrl.js" charset="UTF-8" />
@@ -53,6 +56,7 @@
     <file url="file://$PROJECT_DIR$/common/models/uploadCSV.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/models/user.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/server/model-config.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../bosmeSupplier/client/app/modules/core/controllers/files.ctrl.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../bosmeSupplier/client/app/modules/orders/views/list.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../bosmeSupplier/server/config.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../testAuth/client/app/modules/core/config/core.config.js" charset="UTF-8" />

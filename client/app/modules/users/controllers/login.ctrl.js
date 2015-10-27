@@ -97,19 +97,15 @@ angular.module('com.module.users')
         }, $scope.credentials,
         function(user) {
 
-          console.log(user.id); // => acess token
-          console.log(user.ttl); // => 1209600 time to live
-          console.log(user.created); // => 2013-12-20T21:10:20.377Z
-          console.log(user.userId); // => 1
+          //console.log(user.id); // => acess token
+          //console.log(user.ttl); // => 1209600 time to live
+          //console.log(user.created); // => 2013-12-20T21:10:20.377Z
+         // console.log(user.userId); // => 1
 
           var next = $location.nextAfterLogin || '/';
           $location.nextAfterLogin = null;
           AppAuth.currentUser = $scope.loginResult.user;
 
-          localStorage.setItem('currUserId',AppAuth.currentUser.id);
-          localStorage.setItem('currUser',JSON.stringify(AppAuth.currentUser));
-
-         // $rootScope.dashboardBox=[];
 
           CoreService.toastSuccess(gettextCatalog.getString('Logged in'),
             gettextCatalog.getString('You are logged in!'));

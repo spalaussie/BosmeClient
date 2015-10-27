@@ -16,7 +16,7 @@ angular.module('com.module.core')
          console.log("ProductOrder  Greeting ",err);
       });
 
-      UploadCSV.convertToJSON({userId:localStorage.getItem('currUserId')}, function (err) {
+      UploadCSV.convertToJSON({userId:localStorage.getItem('$LoopBack$currentUserId')}, function (err) {
          console.log("ProductOrder  Greeting ",err);
       });
 

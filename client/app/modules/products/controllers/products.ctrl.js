@@ -27,7 +27,7 @@ angular.module('com.module.products')
 
     function loadProducts() {
       Product.find({
-          filter: {where: {userId: localStorage.getItem('currUserId')}}
+          filter: {where: {userId: localStorage.getItem('$LoopBack$currentUserId')}}
         }, function (products) {
           $scope.products = products;
         }
@@ -78,7 +78,7 @@ angular.module('com.module.products')
       Product.find({
         filter:{
           where: {
-            userId:localStorage.getItem('currUserId')
+            userId:localStorage.getItem('$LoopBack$currentUserId')
           }
         }
       },function (products) {

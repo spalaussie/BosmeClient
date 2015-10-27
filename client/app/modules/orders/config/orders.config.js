@@ -5,7 +5,7 @@ angular.module('com.module.orders')
       'app.orders.list', 'ion-navigate');
 
       Order.find({
-        filter:{where: { userId: localStorage.getItem('currUserId')}}
+        filter:{where: { userId: localStorage.getItem('$LoopBack$currentUserId')}}
       },function(data) {
         $rootScope.addDashboardBox(gettextCatalog.getString('Orders'),
           'bg-yellow', 'ion-navigate', data.length,

@@ -27,7 +27,7 @@ angular.module('com.module.categories')
       Category.find(
         {
           filter: {
-            where: {userId: localStorage.getItem('currUserId')},
+            where: {userId: localStorage.getItem('$LoopBack$currentUserId')},
             include: {relation: 'products'}
           }
         }, function (categories) {
@@ -115,7 +115,7 @@ angular.module('com.module.categories')
       Category.find(
         {
           filter: {
-            where: {userId: localStorage.getItem('currUserId')}
+            where: {userId: localStorage.getItem('$LoopBack$currentUserId')}
           }
         }, function (categories) {
           angular.forEach($rootScope.dashboardBox, function(box){
@@ -128,7 +128,7 @@ angular.module('com.module.categories')
 
 
     $scope.onSubmit = function() {
-      $scope.category.userId=localStorage.getItem('currUserId')
+      $scope.category.userId=localStorage.getItem('$LoopBack$currentUserId')
       Category.upsert($scope.category, function() {
         CoreService.toastSuccess(gettextCatalog.getString(
           'Category saved'), gettextCatalog.getString(

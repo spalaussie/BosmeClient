@@ -116,6 +116,11 @@
       "foreignKey": "orderId",
       "through": "ProductOrder"
     },
+    "productOrders": {
+      "type": "hasMany",
+      "model": "ProductOrder",
+      "foreignKey": "orderId"
+    },
     "user": {
       "type": "belongsTo",
       "model": "User",

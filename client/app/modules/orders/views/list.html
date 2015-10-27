@@ -1,36 +1,122 @@
-<div class="panel panel-default" ng-repeat="order in orders | orderBy:'-id'| limitTo:10">
-    <div class="panel-heading">
-      <div class="pull-right">
-        <a href="" class="btn btn-danger btn-xs" ng-click="deleteorder({ id: order.id })"
-           title="{{ 'Delete product' | translate }}"><i class="fa fa-trash-o"></i></a>
-      </div>
-        <a href="" ui-sref="app.orders.view({ orderId: order.id })"
-           title="{{ 'view order' |translate}}"><h3 class="panel-title">
-          Order created on {{order.orderdate | date:'MMM/dd/yyyy' }} for {{order.supplier.bussinessname}}</h3></a>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="pull-right">
+
     </div>
-  <!--< <table class="table table-bordered" ng-show="order.supplier">
-       <tbody>
-       <tr>
-           <th>
-               <a href="" ui-sref="^.view({productId: item.id})">{{order.supplier.name}}</a>
-               <small>{{order.supplier.description}}</small>
-               <div class="pull-right">
-                   <span class="label label-default">{{order.supplier.email}}</span>
-                   <a href="" class="btn btn-xs btn-default" ui-sref="^.edit({productId: item.id})">
-                       <i class="fa fa-pencil"></i>
-                   </a>
-                   <a href="" class="btn btn-xs btn-default" ng-click="delete({productId: item.id})">
-                       <i class="fa fa-trash-o"></i>
-                   </a>
-               </div>
-           </th>
-       </tr>
-       </tbody>
-   </table>
-   <!--<div class="pandy" ng-show="!order.products.length">
-       <h4 class="list-group-item-heading" translate>
-         There are no products with this order!
-       </h4>
-       <p class="list-group-item-text" translate>Click <a href="" ui-sref="^.add({ orderId: order.id })">here</a> to add a product!</p>
-   </div>-->
+    <h3 class="panel-title"><span style="color:#F39C12"> <i class="fa fa-star-o"></i> </span> New Orders &nbsp;&nbsp; <span class="label label-success">{{orderList.newOrders.length}}</span> </h3>
+  </div>
+  <table class="table table-bordered"  ng-show="orderList.newOrders.length">
+    <tbody>
+    <tr ng-repeat="order in orderList.newOrders | orderBy:'-id'">
+      <th>
+        Order {{order.id}} to  <a href="" ng-click="openProfile(order.user.id)">{{order.supplier.username}}</a>
+        <small>, delivery date {{order.deliverydate| date:'MMM/dd/yyyy'}} </small>
+        <div class="pull-right">
+          <a href="" class="btn btn-success btn-xs" ng-click="openQuickView(order)" title="{{ 'quick view' |translate}}">
+            <i class="fa fa-search"></i>
+          </a>
+          <a href="" class="btn btn-xs btn-danger" ng-click="changeOrderStatus(order,'return')">
+            <i class="ion ion-reply-all"></i>
+          </a>
+        </div>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+  <div class="pandy" ng-show="order.products.length>0">
+    <h4 class="list-group-item-heading" translate>
+      No new order!
+    </h4>
+  </div>
 </div>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="pull-right">
+
+    </div>
+    <h3 class="panel-title"><span style="color:#F56954"> <i class="fa fa-star-half-o"></i> </span> Pending Orders &nbsp;&nbsp; <span class="label label-success">{{orderList.pendingOrders.length}}</span> </h3>
+  </div>
+  <table class="table table-bordered" ng-show="orderList.pendingOrders.length">
+    <tbody>
+    <tr ng-repeat="order in orderList.pendingOrders | orderBy:'-id'" >
+      <th>
+        Order {{order.id}} to  <a href="" ng-click="openProfile(order.user.id)">{{order.supplier.username}}</a>
+        <small>, delivery date {{order.deliverydate| date:'MMM/dd/yyyy'}} </small>
+        <div class="pull-right">
+          <a href="" class="btn btn-xs btn-success" ng-click="openQuickView(order)" title="view  ">
+            <i class="fa fa-search"></i>
+          </a>
+
+        </div>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+  <div class="pandy" ng-show="order.products.length>0">
+    <h4 class="list-group-item-heading" translate>
+      No Pending order!
+    </h4>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="pull-right">
+
+    </div>
+    <h3 class="panel-title"><span style="color:#00A65A"><i class="fa fa-star"></i></span>Recently Processed Orders &nbsp;&nbsp; <span class="label label-success">{{orderList.processedOrders.length}}</span> </h3>
+  </div>
+  <table class="table table-bordered" ng-show="orderList.processedOrders.length">
+    <tbody>
+    <tr ng-repeat="order in orderList.processedOrders | orderBy:'-id'" >
+      <th>
+        Order {{order.id}} to  <a href="" ng-click="openProfile(order.user.id)">{{order.supplier.username}}</a>
+        <small>, delivery date {{order.deliverydate| date:'MMM/dd/yyyy'}} </small>
+        <div class="pull-right">
+          <a href="" class="btn btn-success btn-xs" ng-click="openQuickView(order)" title="recieve">
+            <i class="fa fa-search"></i>
+          </a>
+        </div>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+  <div class="pandy" ng-show="order.products.length>0">
+    <h4 class="list-group-item-heading" translate>
+      No new order!
+    </h4>
+  </div>
+</div>
+
+
+
+<!-------------------- Quick View Order -------------------------------->
+
+<script type="text/ng-template" id="ModalOrderContent.html">
+  <div class="modal-header">
+    <div>
+      <h3 class="modal-title">Order for {{order.supplier.bussinessname}}</h3>
+
+    </div>
+
+    <div class="modal-body">
+      <div class="pull-right">Delivery date: <strong>{{order.deliveryDate | date:'MMM/dd/yyyy' }}</strong>    </div>
+      <table class="table table-bordered">
+        <tr ng-repeat="item in order.orderLine">
+          <th>
+            {{item.productName}} &nbsp;&nbsp; <span style="color:#00aaaa ">({{item.unit}})</span>
+
+            <div class="pull-right">
+              {{item.quantity}}
+            </div>
+          </th>
+        </tr>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" type="button" ng-click="ok()">Ok</button>
+    </div>
+  </div>
+</script>

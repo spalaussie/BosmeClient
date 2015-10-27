@@ -1,14 +1,110 @@
 <div class="panel panel-default" ng-repeat="message in messages">
-    <div class="panel-heading">
-        <div class="pull-right">
-           Messsages
-        </div>
+  <div ng-class="message.read && 'message-read' || 'panel-heading'">
+    <div class="pull-right">
+      <a href="" class="btn btn-success btn-xs" ng-click="openMessage(message)"  title="{{ 'Read message' | translate }}">
+        <i ng-class="message.read && 'ion ion-ios-email-outline' ||'ion ion-ios-email'"></i>
+      </a>
+      <a href="" class="btn btn-success btn-xs" style="color: #ffffff" ng-click="viewProfile(message.senderId)" title="{{ 'View Profile' | translate }}"> <i class="ion ion-person"></i></a>
 
-        <h3 class="panel-title">{{ message.title }}
-         </h3>
-
-
+      <a ng-show="message.read" href="" class="btn btn-danger btn-xs" ng-click="deletemessage({id:message.id})"
+         title="{{ 'Delete message' | translate }}"><i class="fa fa-trash-o"></i></a>
     </div>
- </div>
- </div>
 
+    <h3 class="panel-title">{{ message.title }}
+
+    </h3>
+
+
+  </div>
+</div>
+
+<script type="text/ng-template" id="messageModalContent.html">
+  <div class="modal-header">
+    <div>
+      <p><strong>From: {{sender.bussinessname}}</strong></p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-solid">
+            <div class="box-header">
+              <h2 class="box-title" >
+                <p><strong> {{message.title}} </strong>
+              </h2>
+              <h3 class="box-title" >
+                <p>{{message.message}}</p>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">Ok </button>
+      </div>
+    </div>
+  </div>
+</script>
+
+<!--
+<script type="text/ng-template" id="senderModalContent.html">
+  <div class="modal-header">
+    <div>
+      <h3 class="modal-title">{{sender.bussinessFullName}}</h3>
+      <p><strong>ABN</strong>  {{sender.abn}}</p>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="box box-solid">
+            <div class="box-header">
+              <h2 class="box-title" >
+                <p><strong> Contact:</strong>
+                  {{sender.firstName}} &nbsp; {{sender.lastName}}</p>
+              </h2>
+              <h3 class="box-title" >
+                <p><strong> Phone:</strong>
+                  {{sender.phone}}</p>
+              </h3>
+              <h3 class="box-title" >
+                <p><strong> Address:</strong>
+                  {{sender.address}} <br /> {{sender.state}}, &nbsp; {{sender.zip}} <br /> {{sender.country}} </p>
+              </h3>
+              <h3 class="box-title" >
+                <p><strong> Website:</strong>
+                  {{sender.url}}</p>
+              </h3>
+
+              <h3 class="box-title" >
+                <p><strong> About:</strong>
+                  {{sender.about}} </p>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+
+          <div class="box box-solid bg-light-blue">
+            <div class="box-header">
+              <h3 class="box-title" >
+                adasdasdasda
+                <small><a href="http://gravatar.com" translate>Change it here!</a></small>
+              </h3>
+            </div>
+            <div class="box-body">
+              <div class="text-center">
+                <img gravatar-src="user.email" class="img-circle" alt="User Image" gravatar-size="150">
+              </div>
+            </div>
+            <div class="box-header">&nbsp;</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">Add </button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Not Now</button>
+      </div>
+    </div>
+  </div>
+</script>-->

@@ -33,10 +33,12 @@ function OrdersFormCtrl($scope, $modal, $state,$filter, $stateParams,ApiService,
     })
     orders.orderItems = orderItems;
 
+    User.findById({
+      id:localStorage.getItem('$LoopBack$currentUserId')
+    }, function(user){
+      orders.user = user;
+    })
 
-    orders.user = JSON.parse(localStorage.getItem('currUser'));
-    //  console.log(orders.user.firstName);
-    //console.log(localStorage.getItem('currUser'));
 
 
     var modalInstance = $modal.open({

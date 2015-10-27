@@ -5,7 +5,7 @@ angular.module('com.module.categories')
       'app.categories.list', 'ion-folder');
 
       Category.find({
-        filter:{where: { userId: localStorage.getItem('currUserId')}}
+        filter:{where: { userId: localStorage.getItem('$LoopBack$currentUserId')}}
       },function(data) {
         //console.log(data);
         $rootScope.addDashboardBox(gettextCatalog.getString('Categories'),

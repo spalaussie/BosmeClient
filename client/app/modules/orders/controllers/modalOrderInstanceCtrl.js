@@ -13,7 +13,7 @@ function OrderModalInstanceCtrl($scope, $state, $stateParams,ApiService, AppAuth
 
   var productOrders=order.productOrders;
   productOrders.sort(function(a, b){return a.productId- b.productId});
-  var user= order.user;
+  //var user= order.user;
 
   loadOrder();
 
@@ -32,7 +32,7 @@ function OrderModalInstanceCtrl($scope, $state, $stateParams,ApiService, AppAuth
         }
 
         $scope.order.orderLine = lstOrderLine;
-        $scope.order.userName = user.username;
+        $scope.order.supplier = order.supplier;
         $scope.order.deliveryDate = order.deliverydate;
       }
     }

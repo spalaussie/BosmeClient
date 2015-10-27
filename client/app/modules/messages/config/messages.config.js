@@ -5,7 +5,7 @@ angular.module('com.module.messages')
       'app.messages.list', 'ion-email');
 
       Message.find({
-        filter:{where: {and:[{ userId: localStorage.getItem('currUserId')},{read:false}]}}
+        filter:{where: {and:[{ userId: localStorage.getItem('$LoopBack$currentUserId')},{read:false}]}}
       },function(data) {
         //console.log(data);
         $rootScope.addDashboardBox(gettextCatalog.getString('Inbox'),

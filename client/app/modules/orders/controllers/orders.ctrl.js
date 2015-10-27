@@ -1,6 +1,6 @@
 'use strict';
 angular.module('com.module.orders')
-  .controller('OrdersCtrl', function ($rootScope, $scope, ApiService, AppAuth, $location, $state, $stateParams,
+  .controller('OrdersCtrl', function ($rootScope, $scope, $modal, ApiService, AppAuth, $location, $state, $stateParams,
                                       CoreService, gettextCatalog,User, Supplier, Order, ClientSupplier, ProductOrder) {
 
     var orderId = $stateParams.orderId;
@@ -84,7 +84,7 @@ angular.module('com.module.orders')
 
     ClientSupplier.find({
       filter: {
-        where: {userId:localStorage.getItem('currUserId')}
+        where: {userId:localStorage.getItem('$LoopBack$currentUserId')}
       }
     }, function (clientSuppliers) {
       var arr = [];
@@ -103,7 +103,11 @@ angular.module('com.module.orders')
 
     });
 
-
+    $scope.orderList={
+      newOrders:[],
+      pendingOrders:[],
+      processedOrders:[]
+    }
 
     loadOrders();
 
@@ -111,9 +115,14 @@ angular.module('com.module.orders')
      $scope.orders=[];
      Order.find({
        filter: {
-         where: {userId: localStorage.getItem('currUserId')}
+         where: {userId: localStorage.getItem('$LoopBack$currentUserId')},
+         include: ['products','user','productOrders']
        }
      }, function (orders) {
+       var tempNewOrders=[];
+       var tempPendingOrders=[];
+       var tempProcessedOrders=[];
+
        angular.forEach(orders, function (order) {
          $scope.supplier = User.findById({
            id: order.supplierid
@@ -122,41 +131,56 @@ angular.module('com.module.orders')
            $scope.orders.push(order);
          })
 
+           switch(order.status){
+             case 1: tempNewOrders.push(order);
+               break;
+             case 2: tempPendingOrders.push(order);
+               break;
+             case 3: tempProcessedOrders.push(order);
+               break;
+           }
+
        })
+       $scope.orderList.newOrders=tempNewOrders;
+       $scope.orderList.pendingOrders=tempPendingOrders;
+       $scope.orderList.processedOrders=tempProcessedOrders;
+
      });
    }
 
+    /*****************************************************************/
+    /********Open order modal dialogue to quick view Order **********/
+    /***************************************************************/
+    $scope.openQuickView = function (order) {
 
+      // var order=order;
 
-    /*Get the current date*/
+      var modalInstance = $modal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'ModalOrderContent.html',
+        controller: 'OrderModalInstanceCtrl',
+        backdrop: 'static',
+        resolve: {
+          currOrder: function () {
+            return order;
+          }
+        }
+      });
+      /****************************************************************/
+      /*************Save the order and send Email to supplier**********/
+      /****************************************************************/
+      modalInstance.result.then(function (dt) {
 
-    function getTodaysDate(){
-      var today = new Date();
-      var dd = today.getDate();
-      var mm = today.getMonth()+1; //January is 0!
-      var yyyy = today.getFullYear();
+      });
+    };
 
-      if(dd<10) {
-        dd='0'+dd
-      }
-
-      if(mm<10) {
-        mm='0'+mm
-      }
-
-      today = mm+'/'+dd+'/'+yyyy;
-
-      return today;
-    }
-
-    /* End Get the current date*/
 
     /* Create anew Order and get the new orderId to create a ProductOrder */
     $scope.newOrder={};
     $scope.addorder=function(supplierId){
       $scope.newOrder.supplierid=supplierId;
-      $scope.newOrder.userId=localStorage.getItem('currUserId');
-      $scope.newOrder.orderdate= getTodaysDate();
+      $scope.newOrder.userId=localStorage.getItem('$LoopBack$currentUserId');
+      $scope.newOrder.orderdate= CoreService.getTodaysDate();
       $scope.newOrder.deliverydate=null;
       $scope.newOrder.status=0;
 
@@ -167,8 +191,6 @@ angular.module('com.module.orders')
       }).$promise.then(function (data) {
           newOrder = data;
           $state.go('app.orders.addorder', { orderId:newOrder.id});
-          // $location.url("app//productOrders/addorder/" + newOrder.id);
-          //console.log($location.url());
         });
 
     };
@@ -194,7 +216,7 @@ angular.module('com.module.orders')
 
     $scope.onSubmit = function() {
       Order.upsert($scope.newOrder, function() {
-
+        loadOrders();
       }, function(err) {
         console.log(err);
       });
