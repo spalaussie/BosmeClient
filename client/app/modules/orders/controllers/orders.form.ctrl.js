@@ -70,10 +70,10 @@ function OrdersFormCtrl($scope, $modal, $state,$filter, $stateParams,ApiService,
             Order.upsert(orderToUpdate, function (data) {
               orders.order = data;
               /****************notifying supplier  throgh Email****************/
-              var msg = ({msg: orders});
+           /*   var msg = ({msg: orders});
               Order.sendemail(msg, function (err) {
                 // console.log("ProductOrder  Greeting ",err);
-              });
+              });*/
 
               /***********end**notifying user throgh Email****************/
               //console.log(err);
@@ -87,7 +87,7 @@ function OrdersFormCtrl($scope, $modal, $state,$filter, $stateParams,ApiService,
         /***********************saving order*************************/
         CoreService.toastSuccess(gettextCatalog.getString(
           'Order saved'), gettextCatalog.getString(
-          'Your order sent to ' + $scope.supplier.name));
+          'Your order sent to ' + $scope.supplier.bussinessname));
         $state.go('^.list');
     });
   };
