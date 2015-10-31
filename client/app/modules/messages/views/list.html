@@ -4,7 +4,6 @@
       <a href="" class="btn btn-success btn-xs" ng-click="openMessage(message)"  title="{{ 'Read message' | translate }}">
         <i ng-class="message.read && 'ion ion-ios-email-outline' ||'ion ion-ios-email'"></i>
       </a>
-      <a href="" class="btn btn-success btn-xs" style="color: #ffffff" ng-click="viewProfile(message.senderId)" title="{{ 'View Profile' | translate }}"> <i class="ion ion-person"></i></a>
 
       <a ng-show="message.read" href="" class="btn btn-danger btn-xs" ng-click="deletemessage({id:message.id})"
          title="{{ 'Delete message' | translate }}"><i class="fa fa-trash-o"></i></a>
