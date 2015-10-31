@@ -50,12 +50,12 @@
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'bosmeorder@gmail.com',
-          pass: 'BosmeOrder2015!'
+          user: 'abc@gmail.com',
+          pass: 'abc'
         }
       });
       transporter.sendMail({
-        from: 'bosmeorder@gmail.com',
+        from: 'abc@gmail.com',
         to: msg.supplier.email +','+ msg.user.email,
         subject: 'New Order from ' + msg.user.bussinessname,
         html: $.html()
