@@ -21,5 +21,15 @@ function ModalInstanceCtrl($scope, $state, $stateParams,ApiService, AppAuth, $lo
   };
 
 
+  $scope.formData      = {};
+  $scope.formData.date = "";
+  $scope.opened        = false;
+
+  //Datepicker
+  $scope.dateOptions = {
+    'year-format': "'yy'",
+    'show-weeks' : false
+  };
+
 }
 app.controller('ModalInstanceCtrl', ModalInstanceCtrl);
