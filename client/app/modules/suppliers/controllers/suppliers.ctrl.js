@@ -1,46 +1,96 @@
 'use strict';
 angular.module('com.module.suppliers')
   .controller('SuppliersCtrl', function ($rootScope, $scope, $state, $stateParams,ApiService, AppAuth, $location,
-                                        CoreService, gettextCatalog,User, Message, Supplier) {
+                                        CoreService, gettextCatalog,User, Message, Supplier, Category) {
 
     var supplierId = $stateParams.supplierId;
     $scope.suppliers = [];
-    $scope.supplier={};
+    $scope.supplier = {};
 
     loadItems();
-    getuserName(localStorage.getItem('$LoopBack$currentUserId'));
 
 
 
     function loadItems() {
       User.find({
         filter: {
-          where: {isSupplier:true},
-          include: ['clientSuppliers','products']
+          where: {isSupplier: true},
+          include: ['clientSuppliers', 'products']
         }
       }, function (suppliers) {
         $scope.suppliers = suppliers;
       });
 
-      if (supplierId) {
+     /* if (supplierId) {
         $scope.supplierId = supplierId;
         User.find({
-          filter:{
+          filter: {
             where: {id: supplierId},
-            include: ['clientSuppliers','products']
+            include: ['products']
           }
-        }, function(supplier) {
-          $scope.supplier =supplier[0];
+        }, function (supplier) {
+          var supplier = supplier[0];
+
         });
       }
+    }*/
+
+      if (supplierId) {
+
+        getuserName(supplierId);
+
+        $scope.supplierId = supplierId;
+
+        Category.find({
+          filter: {
+            where: {userId: supplierId},
+            include: {
+              relation: 'products',   // include the owner object
+              scope: {
+                order: 'name ASC'
+              }
+            }, order: 'name ASC'
+          }
+        }, function (categories) {
+          $scope.categories = categories;
+
+        });
+      }
+
+
+/*      if (supplierId) {
+        $scope.supplierId = supplierId;
+        User.findOne({
+          filter: {
+            where: {id: supplierId},
+            include: {
+              relation: 'categories', // include the owner object
+              scope: { // further filter the owner object
+                fields: {'name':true}, // only show two fields
+                include: { // include orders for the owner
+                  relation: 'products', // include the owner object
+                  scope: { // further filter the owner object
+                    where: {userId: supplierId },
+                    fields: {'name': true}
+                  } // only select order with id 5
+                }
+              }
+            }
+          }
+        }, function (supplier) {
+          var supplier = supplier[0];
+
+        });
+      }*/
     }
+
 
     function getuserName(userId){
       User.findById({
         id: userId
       },function (data) {
-          $scope.sender=data;
-          open($scope.sender);
+          $scope.supplier=data;
+          //open($scope.sender);
         });
     }
 

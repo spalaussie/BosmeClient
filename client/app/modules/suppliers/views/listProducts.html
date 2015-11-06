@@ -1,10 +1,33 @@
-<a href="" ui-sref="^.list" class="btn btn-default"><i class="fa fa-arrow-left"></i> &nbsp;back to suppliers</a>
+<a href="" ui-sref="^.list" class="btn btn-default"><i class="fa fa-arrow-left"></i> &nbsp;back to suppliers</a> <h3>{{supplier.bussinessname}}'s product list</h3>
+<div class="panel panel-default" ng-repeat="category in categories">
+  <div class="panel-heading">
+    <div class="pull-right"></div>
+    <h3 class="panel-title">{{ category.name }} &nbsp; items</h3>
+  </div>
+  <table class="table table-bordered" ng-show="category.products.length">
+    <tbody>
+    <tr ng-repeat="item in category.products">
+      <th>
+        <a href="">{{item.name}}</a>
+        <small>{{item.note}}</small>
+        <div class="pull-right">
+          <span class="label label-default">{{item.price|currency}} / {{item.unit}}</span>
+        </div>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+<!--<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">{{ supplier.bussinessname }} Products </h1>
+  </div>
+</div>
 <div class="panel panel-default">
   <div class="panel-heading">
-
     <h1 class="panel-title">{{ supplier.bussinessname }} </h1>
   </div>
   <div class="panel-body">
+
     <table class="table table-bordered " ng-show="supplier.products.length">
       <tbody>
       <tr ng-repeat="item in supplier.products">
@@ -17,9 +40,9 @@
         </th>
       </tr>
       </tbody>
-    </table>
+    </table>-->
 
-    <h4 class="list-group-item-heading" ng-show="!supplier.products.length" translate>
+    <h4 class="list-group-item-heading" ng-show="!category.products.length" translate>
       This supplier has not provided his products information yet.
     </h4>
   </div>
