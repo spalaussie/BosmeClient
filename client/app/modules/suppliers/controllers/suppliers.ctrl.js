@@ -7,7 +7,9 @@ angular.module('com.module.suppliers')
     $scope.suppliers = [];
     $scope.supplier = {};
 
-    loadItems();
+    getName(localStorage.getItem('$LoopBack$currentUserId'),'user');
+
+      loadItems();
 
 
 
@@ -37,7 +39,7 @@ angular.module('com.module.suppliers')
 
       if (supplierId) {
 
-        getuserName(supplierId);
+        getName(supplierId,'supplier');
 
         $scope.supplierId = supplierId;
 
@@ -85,13 +87,22 @@ angular.module('com.module.suppliers')
     }
 
 
-    function getuserName(userId){
-      User.findById({
-        id: userId
-      },function (data) {
-          $scope.supplier=data;
+    function getName(userId,type){
+      if(type==='user') {
+        User.findById({
+          id: userId
+        }, function (data) {
+          $scope.sender = data;
           //open($scope.sender);
         });
+      }else{
+        User.findById({
+          id: userId
+        }, function (data) {
+          $scope.supplier = data;
+          //open($scope.sender);
+        });
+      }
     }
 
 
